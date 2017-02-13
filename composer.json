@@ -1,0 +1,53 @@
+{
+    "name": "tms/like-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony LikeBundle",
+    "keywords": [],
+    "license": "",
+    "authors": [
+        {
+            "name": "TESSI MARKETING",
+            "email": "contact@tessi.fr",
+            "homepage": "http://www.tessi.fr"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Tessi-Tms/TmsWebAdminTemplateBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Tessi-Tms/TmsRestBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Tessi-Tms/TmsSsoClientBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Tessi-Tms/TmsLikeBundle.git"
+        }
+
+    ],
+    "require": {
+        "php":                           ">=5.3.3",
+        "symfony/framework-bundle":      ">=2.8",
+        "doctrine/orm":                  "~2.2,>=2.2.3",
+        "doctrine/doctrine-bundle":      "~1.2",
+        "twig/twig":                     "~1.0",
+        "tms/web-admin-template-bundle": "~2.0",
+        "tms/rest-bundle":               "~1.0",
+        "hwi/oauth-bundle":              "0.3.*@dev",
+        "da/auth-common-bundle":         "~1.0",
+        "da/oauth-client-bundle":        "~1.0",
+        "da/api-client-bundle":          "~1.0",
+        "tms/sso-client-bundle":         "~1.0",
+        "da/api-server-bundle":          "~1.0"
+    },
+    "autoload": {
+        "psr-0": { "Tms\\Bundle\\LikeBundle": "" }
+    },
+    "target-dir": "Tms/Bundle/LikeBundle",
+    "minimum-stability": "dev"
+}
