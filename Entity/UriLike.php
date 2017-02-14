@@ -49,13 +49,12 @@ class UriLike
     private $createdAt;
 
     /**
-     * Constructor
+     * @ORM\PrePersist()
      */
-    public function __construct($uriLike, $userId)
+    public function onCreate()
     {
-        $this->setUriLike($uriLike);
-        $this->setUserId($userId);
-        $this->createdAt = new \datetime('now');
+        $now = new \DateTime("now");
+        $this->setCreatedAt($now);
     }
 
     /**
@@ -124,5 +123,19 @@ class UriLike
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return UriLike
+     */
+    public function setCreatedAt(\DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
     }
 }

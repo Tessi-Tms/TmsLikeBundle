@@ -1,0 +1,6 @@
+services:
+    tms_like.manager.configuration_benefit_category:
+        class:     Tms\Bundle\LikeBundle\Manager\UriLikeManager
+        arguments: [@doctrine.orm.entity_manager, @event_dispatcher]
+        tags:
+            - { name: rest.link, class: Tms\Bundle\LikeBundle\Entity\UriLike }
