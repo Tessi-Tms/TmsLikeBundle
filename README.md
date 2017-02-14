@@ -38,6 +38,7 @@ public function registerBundles()
 {
     $bundles = array(
         ...,
+        new JMS\SerializerBundle\JMSSerializerBundle(),
         new Tms\Bundle\LikeBundle\TmsLikeBundle(),
     );
 }
