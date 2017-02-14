@@ -35,16 +35,7 @@
         "symfony/framework-bundle":      ">=2.8",
         "doctrine/orm":                  "~2.2,>=2.2.3",
         "doctrine/doctrine-bundle":      "~1.2",
-        "twig/twig":                     "~1.0",
-        "symfony/assetic-bundle":        "~2.4",
-        "tms/web-admin-template-bundle": "~2.0",
         "tms/rest-bundle":               "~1.0",
-        "hwi/oauth-bundle":              "0.3.*@dev",
-        "da/auth-common-bundle":         "~1.0",
-        "da/oauth-client-bundle":        "~1.0",
-        "da/api-client-bundle":          "~1.0",
-        "tms/sso-client-bundle":         "~1.0",
-        "da/api-server-bundle":          "~1.0",
         "jms/serializer-bundle":         "^1.1"
     },
     "autoload": {
