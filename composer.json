@@ -36,6 +36,7 @@
         "doctrine/orm":                  "~2.2,>=2.2.3",
         "doctrine/doctrine-bundle":      "~1.2",
         "twig/twig":                     "~1.0",
+        "symfony/assetic-bundle":        "~2.4",
         "tms/web-admin-template-bundle": "~2.0",
         "tms/rest-bundle":               "~1.0",
         "hwi/oauth-bundle":              "0.3.*@dev",
