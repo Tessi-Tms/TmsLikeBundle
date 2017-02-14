@@ -1,0 +1,9 @@
+# Doctrine
+doctrine:
+    orm:
+        mappings:
+            uri_like:
+                type: annotation
+                prefix: Tms\Bundle\LikeBundle
+                dir: "%kernel.root_dir%/../vendor/tms/like-bundle/Tms/Bundle/LikeBundle/Entity/"
+                is_bundle: false
