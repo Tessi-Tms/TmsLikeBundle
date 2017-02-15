@@ -34,23 +34,26 @@ class ApiUriLikeController extends FOSRestController
      * Retrieve a set of urilikes
      *
      * @QueryParam(name="uri", nullable=true, description="(optional) Uri")
+     * @QueryParam(name="user_id", nullable=true, description="(optional) User id")
      * @QueryParam(name="limit", requirements="^\d+$", default=20, strict=true, nullable=true, description="(optional) Limit")
      * @QueryParam(name="offset", requirements="^\d+$", strict=true, nullable=true, description="(optional) Offset")
      * @QueryParam(name="page", requirements="^\d+$", strict=true, nullable=true, description="(optional) Page number")
      * @QueryParam(name="sort", array=true, nullable=true, description="(optional) Sort")
      *
      * @param string  $uri
+     * @param string  $user_id
      * @param integer $limit
      * @param integer $offset
      * @param integer $page
      * @param array   $sort
      */
     public function getUrilikesAction(
-        $uri        = null,
-        $limit      = null,
-        $offset     = null,
-        $page       = null,
-        $sort       = null
+        $uri     = null,
+        $user_id = null,
+        $limit   = null,
+        $offset  = null,
+        $page    = null,
+        $sort    = null
     )
     {
         $view = $this->view(
@@ -68,10 +71,12 @@ class ApiUriLikeController extends FOSRestController
                         ->getEntityClass()
                 )
                 ->setCriteria(array(
-                    'uri' => $uri
+                    'uri' => $uri,
+                    'userId' => $user_id
                 ))
                 ->setExtraQuery(array(
-                    'uri' => $uri
+                    'uri' => $uri,
+                    'user_id' => $user_id
                 ))
                 ->setSort($sort)
                 ->setLimit($limit)
