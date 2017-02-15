@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @author Eddie BARRACO <eddie.barraco@idci-consulting.fr>
+ */
+
 namespace Tms\Bundle\LikeBundle\Manager;
 
 use Tms\Bundle\LikeBundle\Entity\UriLike;
@@ -8,8 +12,6 @@ use Tms\Bundle\LikeBundle\Event\UriLikeEvents;
 
 /**
  * UriLikeManager
- *
- * @author Eddie BARRACO <eddie.barraco@idci-consulting.fr>
  */
 class UriLikeManager extends AbstractManager
 {

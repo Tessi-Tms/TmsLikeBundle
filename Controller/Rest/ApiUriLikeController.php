@@ -168,20 +168,20 @@ class ApiUriLikeController extends FOSRestController
 
                 $view = $this->view(
                     $this
-                    ->get('tms_rest.formatter.factory')
-                    ->create(
-                        'item',
-                        $this->getRequest()->get('_route'),
-                        $this->getRequest()->getRequestFormat(),
-                        array('id' => $uriLike->getId())
-                    )
-                    ->setObjectManager(
-                        $this->get('doctrine.orm.entity_manager'),
-                        $this
-                        ->get('tms_like.manager.uri_like')
-                        ->getEntityClass()
-                    )
-                    ->format()
+                        ->get('tms_rest.formatter.factory')
+                        ->create(
+                            'item',
+                            $this->getRequest()->get('_route'),
+                            $this->getRequest()->getRequestFormat(),
+                            array('id' => $uriLike->getId())
+                        )
+                        ->setObjectManager(
+                            $this->get('doctrine.orm.entity_manager'),
+                            $this
+                            ->get('tms_like.manager.uri_like')
+                            ->getEntityClass()
+                        )
+                        ->format()
                     ,
                     Codes::HTTP_CREATED
                 );

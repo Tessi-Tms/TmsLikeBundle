@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Gabriel Bondaz <gabriel.bondaz@idci-consulting.fr>
+ */
 
 namespace Tms\Bundle\LikeBundle\Manager;
 
@@ -10,8 +13,6 @@ use Tms\Bundle\LoggerBundle\Event\LogEvent;
 
 /**
  * Abstract manager.
- *
- * @author Gabriel Bondaz <gabriel.bondaz@idci-consulting.fr>
  */
 abstract class AbstractManager
 {
