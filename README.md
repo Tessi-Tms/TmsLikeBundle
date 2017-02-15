@@ -54,6 +54,19 @@ imports:
     - { resource: @TmsLikeBundle/Resources/config/config.yml }
 ```
 
+
+Add routes in your `app/config/routing.yml`:
+```yml
+tms_like:
+    resource: "@TmsLikeBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+tms_like_public_api:
+    type:     rest
+    resource: "@TmsLikeBundle/Resources/config/routing_public_api.yml"
+    prefix:   /api
+```
+
 Documentation
 -------------
 
