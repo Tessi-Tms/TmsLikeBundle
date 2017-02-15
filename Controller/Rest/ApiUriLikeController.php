@@ -217,4 +217,27 @@ class ApiUriLikeController extends FOSRestController
             return $this->handleView($view);
         }
     }
+
+    /**
+     * [DELETE] /urilike/{id}
+     * Remove an uri like
+     *
+     * @Route(requirements={"id" = "^\d+$"})
+     *
+     * @param integer $id
+     */
+     public function deleteUrilikeAction($id)
+     {
+         $entity = $this->get('tms_like.manager.uri_like')->findOneById($id);
+         if (!$entity) {
+             $view = $this->view(array(), Codes::HTTP_NOT_FOUND);
+
+             return $this->handleView($view);
+         }
+
+         $this->get('tms_like.manager.uri_like')->delete($entity);
+         $view = $this->view(array(), Codes::HTTP_NO_CONTENT);
+
+         return $this->handleView($view);
+     }
 }
