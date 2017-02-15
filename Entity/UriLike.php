@@ -53,6 +53,14 @@ class UriLike
     private $createdAt;
 
     /**
+     * To string.
+     */
+    public function __toString()
+    {
+        return sprintf('%s %s', $this->getUserId(), $this->getUri());
+    }
+
+    /**
      * @ORM\PrePersist()
      */
     public function onCreate()
