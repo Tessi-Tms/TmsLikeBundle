@@ -8,6 +8,8 @@ use Tms\Bundle\LikeBundle\Event\UriLikeEvents;
 
 /**
  * UriLikeManager
+ *
+ * @author Eddie BARRACO <eddie.barraco@idci-consulting.fr>
  */
 class UriLikeManager extends AbstractManager
 {
@@ -16,7 +18,7 @@ class UriLikeManager extends AbstractManager
      */
     public function getEntityClass()
     {
-        return "TmsUriLikeBundle:UriLike";
+        return "TmsLikeBundle:UriLike";
     }
 
     /**

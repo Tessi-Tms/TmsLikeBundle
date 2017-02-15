@@ -10,7 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table(
  *     name="uri_like",
- *     uniqueConstraints={@ORM\UniqueConstraint(name="uri_like_unique", columns={"uri_like", "user_id"})}
+ *     uniqueConstraints={@ORM\UniqueConstraint(name="uri_like_unique", columns={"uri", "user_id"})}
  * )
  * @ORM\Entity(repositoryClass="Tms\Bundle\LikeBundle\Entity\Repository\UriLikeRepository")
  * @ORM\HasLifecycleCallbacks()
@@ -30,9 +30,9 @@ class UriLike
     /**
      * @var string
      *
-     * @ORM\Column(type="string", name="uri_like")
+     * @ORM\Column(type="string", name="uri")
      */
-    private $uriLike;
+    private $uri;
 
     /**
      * @var string
@@ -68,27 +68,27 @@ class UriLike
     }
 
     /**
-     * Set uriLike
+     * Set uri
      *
-     * @param string $uriLike
+     * @param string $uri
      *
-     * @return UriLike
+     * @return Uri
      */
-    public function setUriLike($uriLike)
+    public function setUri($uri)
     {
-        $this->uriLike = $uriLike;
+        $this->uri = $uri;
 
         return $this;
     }
 
     /**
-     * Get uriLike
+     * Get uri
      *
      * @return string
      */
-    public function getUriLike()
+    public function getUri()
     {
-        return $this->uriLike;
+        return $this->uri;
     }
 
     /**
