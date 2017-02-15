@@ -5,15 +5,15 @@ Tms\Bundle\LikeBundle\Entity\UriLike:
         id:
             expose: true
             groups: [tms_rest.collection, tms_rest.item, tms_modelio]
-        uriLike:
+        uri:
             expose: true
             groups: [tms_rest.collection, tms_rest.item, tms_modelio]
-            serialized_name: uriLike
+            serialized_name: uri
         userId:
             expose: true
             groups: [tms_rest.collection, tms_rest.item, tms_modelio]
             serialized_name: userId
         createdAt:
             expose: true
-            groups: [tms_rest.collection, tms_rest.item, tms_modelio]
+            groups: [tms_rest.item, tms_modelio]
             serialized_name: createdAt
