@@ -9,9 +9,9 @@ namespace Tms\Bundle\LikeBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Tms\Bundle\LikeBundle\Entity\UriLike;
+use Tms\Bundle\LikeBundle\Entity\UrlLike;
 
-class UriLikeType extends AbstractType
+class UrlLikeType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -19,7 +19,7 @@ class UriLikeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('uri')
+            ->add('url')
             ->add('userId')
         ;
     }
@@ -30,7 +30,7 @@ class UriLikeType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Tms\Bundle\LikeBundle\Entity\UriLike'
+            'data_class' => 'Tms\Bundle\LikeBundle\Entity\UrlLike'
         ));
     }
 
@@ -39,6 +39,7 @@ class UriLikeType extends AbstractType
      */
     public function getName()
     {
-        return 'tms_bundle_likebundle_uriliketype';
+        return 'tms_bundle_likebundle_urlliketype';
     }
 }
+

@@ -1,6 +1,6 @@
 services:
-    tms_like.manager.uri_like:
-        class:     Tms\Bundle\LikeBundle\Manager\UriLikeManager
+    tms_like.manager.url_like:
+        class:     Tms\Bundle\LikeBundle\Manager\UrlLikeManager
         arguments: [@doctrine.orm.entity_manager, @event_dispatcher]
         tags:
-            - { name: rest.link, class: Tms\Bundle\LikeBundle\Entity\UriLike }
+            - { name: rest.link, class: Tms\Bundle\LikeBundle\Entity\UrlLike }

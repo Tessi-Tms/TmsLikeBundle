@@ -11,6 +11,6 @@ use Tms\Bundle\RestBundle\Repository\AbstractEntityRepository;
 /**
  * ConfigurationBenefitCategoryRepository
  */
-class UriLikeRepository extends AbstractEntityRepository
+class UrlLikeRepository extends AbstractEntityRepository
 {
 }

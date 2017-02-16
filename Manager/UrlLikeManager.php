@@ -6,21 +6,21 @@
 
 namespace Tms\Bundle\LikeBundle\Manager;
 
-use Tms\Bundle\LikeBundle\Entity\UriLike;
-use Tms\Bundle\LikeBundle\Event\UriLikeEvent;
-use Tms\Bundle\LikeBundle\Event\UriLikeEvents;
+use Tms\Bundle\LikeBundle\Entity\UrlLike;
+use Tms\Bundle\LikeBundle\Event\UrlLikeEvent;
+use Tms\Bundle\LikeBundle\Event\UrlLikeEvents;
 
 /**
- * UriLikeManager
+ * UrlLikeManager
  */
-class UriLikeManager extends AbstractManager
+class UrlLikeManager extends AbstractManager
 {
     /**
      * {@inheritdoc}
      */
     public function getEntityClass()
     {
-        return "TmsLikeBundle:UriLike";
+        return "TmsLikeBundle:UrlLike";
     }
 
     /**
@@ -29,13 +29,13 @@ class UriLikeManager extends AbstractManager
     public function add($entity)
     {
         $this->getEventDispatcher()->dispatch(
-            UriLikeEvents::PRE_CREATE,
-            new UriLikeEvent($entity)
+            UrlLikeEvents::PRE_CREATE,
+            new UrlLikeEvent($entity)
         );
         parent::add($entity);
         $this->getEventDispatcher()->dispatch(
-            UriLikeEvents::POST_CREATE,
-            new UriLikeEvent($entity)
+            UrlLikeEvents::POST_CREATE,
+            new UrlLikeEvent($entity)
         );
     }
 
@@ -45,13 +45,13 @@ class UriLikeManager extends AbstractManager
     public function update($entity)
     {
         $this->getEventDispatcher()->dispatch(
-            UriLikeEvents::PRE_UPDATE,
-            new UriLikeEvent($entity)
+            UrlLikeEvents::PRE_UPDATE,
+            new UrlLikeEvent($entity)
         );
         parent::update($entity);
         $this->getEventDispatcher()->dispatch(
-            UriLikeEvents::POST_UPDATE,
-            new UriLikeEvent($entity)
+            UrlLikeEvents::POST_UPDATE,
+            new UrlLikeEvent($entity)
         );
     }
 
@@ -61,13 +61,13 @@ class UriLikeManager extends AbstractManager
     public function delete($entity)
     {
         $this->getEventDispatcher()->dispatch(
-            UriLikeEvents::PRE_DELETE,
-            new UriLikeEvent($entity)
+            UrlLikeEvents::PRE_DELETE,
+            new UrlLikeEvent($entity)
         );
         parent::delete($entity);
         $this->getEventDispatcher()->dispatch(
-            UriLikeEvents::POST_DELETE,
-            new UriLikeEvent($entity)
+            UrlLikeEvents::POST_DELETE,
+            new UrlLikeEvent($entity)
         );
     }
 }

@@ -21,34 +21,34 @@ use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Util\Codes;
 use JMS\Serializer\SerializationContext;
 use Tms\Bundle\RestBundle\Formatter\AbstractHypermediaFormatter;
-use Tms\Bundle\LikeBundle\Entity\UriLike;
-use Tms\Bundle\LikeBundle\Form\UriLikeType;
+use Tms\Bundle\LikeBundle\Entity\UrlLike;
+use Tms\Bundle\LikeBundle\Form\UrlLikeType;
 
 /**
- * UriLike API REST controller
+ * UrlLike API REST controller
  */
-class ApiUriLikeController extends FOSRestController
+class ApiUrlLikeController extends FOSRestController
 {
     /**
-     * [GET] /urilikes
-     * Retrieve a set of urilikes
+     * [GET] /urllikes
+     * Retrieve a set of urllikes
      *
-     * @QueryParam(name="uri", nullable=true, description="(optional) Uri")
+     * @QueryParam(name="url", nullable=true, description="(optional) Url")
      * @QueryParam(name="user_id", nullable=true, description="(optional) User id")
      * @QueryParam(name="limit", requirements="^\d+$", default=20, strict=true, nullable=true, description="(optional) Limit")
      * @QueryParam(name="offset", requirements="^\d+$", strict=true, nullable=true, description="(optional) Offset")
      * @QueryParam(name="page", requirements="^\d+$", strict=true, nullable=true, description="(optional) Page number")
      * @QueryParam(name="sort", array=true, nullable=true, description="(optional) Sort")
      *
-     * @param string  $uri
+     * @param string  $url
      * @param string  $user_id
      * @param integer $limit
      * @param integer $offset
      * @param integer $page
      * @param array   $sort
      */
-    public function getUrilikesAction(
-        $uri     = null,
+    public function getUrllikesAction(
+        $url     = null,
         $user_id = null,
         $limit   = null,
         $offset  = null,
@@ -67,15 +67,15 @@ class ApiUriLikeController extends FOSRestController
                 ->setObjectManager(
                     $this->get('doctrine.orm.entity_manager'),
                     $this
-                        ->get('tms_like.manager.uri_like')
+                        ->get('tms_like.manager.url_like')
                         ->getEntityClass()
                 )
                 ->setCriteria(array(
-                    'uri' => $uri,
+                    'url' => $url,
                     'userId' => $user_id
                 ))
                 ->setExtraQuery(array(
-                    'uri' => $uri,
+                    'url' => $url,
                     'user_id' => $user_id
                 ))
                 ->setSort($sort)
@@ -98,14 +98,14 @@ class ApiUriLikeController extends FOSRestController
     }
 
     /**
-     * [GET] /urilikes/{id}
-     * Retrieve an urilike
+     * [GET] /urllikes/{id}
+     * Retrieve an urllike
      *
      * @Route(requirements={"id" = "^[a-zA-Z0-9_-]+$"})
      *
      * @param string  $id
      */
-    public function getUrilikeAction($id)
+    public function getUrllikeAction($id)
     {
         try {
             $view = $this->view(
@@ -119,7 +119,7 @@ class ApiUriLikeController extends FOSRestController
                     ->setObjectManager(
                         $this->get('doctrine.orm.entity_manager'),
                         $this
-                            ->get('tms_like.manager.uri_like')
+                            ->get('tms_like.manager.url_like')
                             ->getEntityClass()
                     )
                     ->format()
@@ -145,13 +145,13 @@ class ApiUriLikeController extends FOSRestController
     }
 
     /**
-     * [POST] /urilikes
-     * Create a urilike
+     * [POST] /urllikes
+     * Create a urllike
      */
-    public function postUrilikeAction(Request $request)
+    public function postUrllikeAction(Request $request)
     {
-        $uriLike = new UriLike();
-        $form = $this->createForm(UriLikeType::class, $uriLike, array(
+        $urlLike = new UrlLike();
+        $form = $this->createForm(UrlLikeType::class, $urlLike, array(
             'csrf_protection' => false,
         ));
 
@@ -162,8 +162,8 @@ class ApiUriLikeController extends FOSRestController
         if ($form->isValid()) {
             try {
                 $this
-                    ->get('tms_like.manager.uri_like')
-                    ->add($uriLike)
+                    ->get('tms_like.manager.url_like')
+                    ->add($urlLike)
                 ;
 
                 $view = $this->view(
@@ -173,12 +173,12 @@ class ApiUriLikeController extends FOSRestController
                             'item',
                             $this->getRequest()->get('_route'),
                             $this->getRequest()->getRequestFormat(),
-                            array('id' => $uriLike->getId())
+                            array('id' => $urlLike->getId())
                         )
                         ->setObjectManager(
                             $this->get('doctrine.orm.entity_manager'),
                             $this
-                            ->get('tms_like.manager.uri_like')
+                            ->get('tms_like.manager.url_like')
                             ->getEntityClass()
                         )
                         ->format()
@@ -219,23 +219,23 @@ class ApiUriLikeController extends FOSRestController
     }
 
     /**
-     * [DELETE] /urilike/{id}
-     * Remove an uri like
+     * [DELETE] /urllike/{id}
+     * Remove an url like
      *
      * @Route(requirements={"id" = "^\d+$"})
      *
      * @param integer $id
      */
-     public function deleteUrilikeAction($id)
+     public function deleteUrllikeAction($id)
      {
-         $entity = $this->get('tms_like.manager.uri_like')->findOneById($id);
+         $entity = $this->get('tms_like.manager.url_like')->findOneById($id);
          if (!$entity) {
              $view = $this->view(array(), Codes::HTTP_NOT_FOUND);
 
              return $this->handleView($view);
          }
 
-         $this->get('tms_like.manager.uri_like')->delete($entity);
+         $this->get('tms_like.manager.url_like')->delete($entity);
          $view = $this->view(array(), Codes::HTTP_NO_CONTENT);
 
          return $this->handleView($view);

@@ -7,19 +7,20 @@
 namespace Tms\Bundle\LikeBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * UriLike
+ * UrlLike
  *
  * @ORM\Table(
- *     name="uri_like",
- *     uniqueConstraints={@ORM\UniqueConstraint(name="uri_like_unique", columns={"uri", "user_id"})}
+ *     name="url_like",
+ *     uniqueConstraints={@ORM\UniqueConstraint(name="url_like_unique", columns={"url", "user_id"})}
  * )
- * @ORM\Entity(repositoryClass="Tms\Bundle\LikeBundle\Entity\Repository\UriLikeRepository")
+ * @ORM\Entity(repositoryClass="Tms\Bundle\LikeBundle\Entity\Repository\UrlLikeRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class UriLike
+class UrlLike
 {
 
     /**
@@ -34,9 +35,10 @@ class UriLike
     /**
      * @var string
      *
-     * @ORM\Column(type="string", name="uri")
+     * @Assert\Url()
+     * @ORM\Column(type="string", name="url")
      */
-    private $uri;
+    private $url;
 
     /**
      * @var string
@@ -44,6 +46,13 @@ class UriLike
      * @ORM\Column(type="string", name="user_id")
      */
     private $userId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", name="host")
+     */
+    private $host;
 
     /**
      * @var \datetime
@@ -57,7 +66,7 @@ class UriLike
      */
     public function __toString()
     {
-        return sprintf('%s %s', $this->getUserId(), $this->getUri());
+        return sprintf('%s %s', $this->getUserId(), $this->getUrl());
     }
 
     /**
@@ -67,6 +76,16 @@ class UriLike
     {
         $now = new \DateTime("now");
         $this->setCreatedAt($now);
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function buildHost()
+    {
+        $host = parse_url($this->getUrl(), PHP_URL_HOST);
+        $this->setHost($host);
     }
 
     /**
@@ -80,27 +99,27 @@ class UriLike
     }
 
     /**
-     * Set uri
+     * Set url
      *
-     * @param string $uri
+     * @param string $url
      *
-     * @return Uri
+     * @return Url
      */
-    public function setUri($uri)
+    public function setUrl($url)
     {
-        $this->uri = $uri;
+        $this->url = $url;
 
         return $this;
     }
 
     /**
-     * Get uri
+     * Get url
      *
      * @return string
      */
-    public function getUri()
+    public function getUrl()
     {
-        return $this->uri;
+        return $this->url;
     }
 
     /**
@@ -108,7 +127,7 @@ class UriLike
      *
      * @param string $userId
      *
-     * @return UriLike
+     * @return UrlLike
      */
     public function setUserId($userId)
     {
@@ -142,12 +161,36 @@ class UriLike
      *
      * @param \DateTime $createdAt
      *
-     * @return UriLike
+     * @return UrlLike
      */
     public function setCreatedAt(\DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
 
         return $this;
+    }
+
+    /**
+     * Set host
+     *
+     * @param string $host
+     *
+     * @return UrlLike
+     */
+    public function setHost($host)
+    {
+        $this->host = $host;
+
+        return $this;
+    }
+
+    /**
+     * Get host
+     *
+     * @return string
+     */
+    public function getHost()
+    {
+        return $this->host;
     }
 }

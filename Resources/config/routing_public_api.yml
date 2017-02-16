@@ -1,5 +1,5 @@
 
-urilikes:
+urllikes:
     type:         rest
-    resource:     Tms\Bundle\LikeBundle\Controller\Rest\ApiUriLikeController
-    name_prefix:  api_uri_likes_
+    resource:     Tms\Bundle\LikeBundle\Controller\Rest\ApiUrlLikeController
+    name_prefix:  api_url_likes_
