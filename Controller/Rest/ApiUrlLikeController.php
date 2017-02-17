@@ -35,6 +35,7 @@ class ApiUrlLikeController extends FOSRestController
      *
      * @QueryParam(name="url", nullable=true, description="(optional) Url")
      * @QueryParam(name="user_id", nullable=true, description="(optional) User id")
+     * @QueryParam(name="host", nullable=true, description="(optional) Host")
      * @QueryParam(name="limit", requirements="^\d+$", default=20, strict=true, nullable=true, description="(optional) Limit")
      * @QueryParam(name="offset", requirements="^\d+$", strict=true, nullable=true, description="(optional) Offset")
      * @QueryParam(name="page", requirements="^\d+$", strict=true, nullable=true, description="(optional) Page number")
@@ -42,6 +43,7 @@ class ApiUrlLikeController extends FOSRestController
      *
      * @param string  $url
      * @param string  $user_id
+     * @param string  $host
      * @param integer $limit
      * @param integer $offset
      * @param integer $page
@@ -50,6 +52,7 @@ class ApiUrlLikeController extends FOSRestController
     public function getUrllikesAction(
         $url     = null,
         $user_id = null,
+        $host = null,
         $limit   = null,
         $offset  = null,
         $page    = null,
@@ -71,12 +74,14 @@ class ApiUrlLikeController extends FOSRestController
                         ->getEntityClass()
                 )
                 ->setCriteria(array(
-                    'url' => $url,
-                    'userId' => $user_id
+                    'url'    => $url,
+                    'userId' => $user_id,
+                    'host'   => $host
                 ))
                 ->setExtraQuery(array(
-                    'url' => $url,
-                    'user_id' => $user_id
+                    'url'     => $url,
+                    'user_id' => $user_id,
+                    'host'    => $host
                 ))
                 ->setSort($sort)
                 ->setLimit($limit)
