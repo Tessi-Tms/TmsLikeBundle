@@ -9,6 +9,7 @@ namespace Tms\Bundle\LikeBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Tms\Bundle\LikeBundle\Entity\UrlLike;
 
 class UrlLikeType extends AbstractType
@@ -19,7 +20,9 @@ class UrlLikeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('url')
+            ->add('url', UrlType::class, array(
+                'default_protocol' => null
+            ))
             ->add('userId')
         ;
     }

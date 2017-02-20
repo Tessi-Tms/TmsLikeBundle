@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\Annotations\Route;
@@ -198,6 +199,14 @@ class ApiUrlLikeController extends FOSRestController
                     ))
                 ;
                 $view->setSerializationContext($serializationContext);
+
+                return $this->handleView($view);
+
+            } catch (UniqueConstraintViolationException $e) {
+                $view = $this->view(
+                    array('error' => $e->getMessage()),
+                    Codes::HTTP_CONFLICT
+                );
 
                 return $this->handleView($view);
             } catch (\Exception $e) {
