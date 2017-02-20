@@ -15,6 +15,12 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table(
  *     name="url_like",
+ *     indexes={
+ *         @ORM\Index(name="user_id", columns={"user_id"}),
+ *         @ORM\Index(name="url", columns={"url"}),
+ *         @ORM\Index(name="host", columns={"host"}),
+ *         @ORM\Index(name="created_at", columns={"created_at"})
+ *     },
  *     uniqueConstraints={@ORM\UniqueConstraint(name="url_like_unique", columns={"url", "user_id"})}
  * )
  * @ORM\Entity(repositoryClass="Tms\Bundle\LikeBundle\Entity\Repository\UrlLikeRepository")
