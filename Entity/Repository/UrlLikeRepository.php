@@ -9,7 +9,7 @@ namespace Tms\Bundle\LikeBundle\Entity\Repository;
 use Tms\Bundle\RestBundle\Repository\AbstractEntityRepository;
 
 /**
- * ConfigurationBenefitCategoryRepository
+ * UrlLikeRepository
  */
 class UrlLikeRepository extends AbstractEntityRepository
 {
