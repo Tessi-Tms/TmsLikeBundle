@@ -119,7 +119,8 @@ class ApiUrlLikeController extends FOSRestController
                     ->create(
                         'item',
                         $this->getRequest()->get('_route'),
-                        $this->getRequest()->getRequestFormat()
+                        $this->getRequest()->getRequestFormat(),
+                        array('id' => $id)
                     )
                     ->setObjectManager(
                         $this->get('doctrine.orm.entity_manager'),
