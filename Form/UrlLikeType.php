@@ -23,8 +23,7 @@ class UrlLikeType extends AbstractType
             ->add('url', UrlType::class, array(
                 'default_protocol' => null
             ))
-            ->add('userId')
-        ;
+            ->add('userId');
     }
 
     /**
@@ -45,4 +44,3 @@ class UrlLikeType extends AbstractType
         return 'tms_bundle_likebundle_urlliketype';
     }
 }
-

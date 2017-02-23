@@ -1,7 +1,4 @@
 <?php
-/**
- * @author Gabriel Bondaz <gabriel.bondaz@idci-consulting.fr>
- */
 
 namespace Tms\Bundle\LikeBundle\Manager;
 
@@ -13,6 +10,8 @@ use Tms\Bundle\LoggerBundle\Event\LogEvent;
 
 /**
  * Abstract manager.
+ *
+ * @author Gabriel Bondaz <gabriel.bondaz@idci-consulting.fr>
  */
 abstract class AbstractManager
 {
@@ -22,11 +21,13 @@ abstract class AbstractManager
     /**
      * Constructor
      *
-     * @param EntityManager $entityManager
+     * @param EntityManager            $entityManager
      * @param EventDispatcherInterface $eventDispatcher
      */
-    public function __construct(EntityManager $entityManager, EventDispatcherInterface $eventDispatcher)
-    {
+    public function __construct(
+        EntityManager $entityManager,
+        EventDispatcherInterface $eventDispatcher
+    ) {
         $this->entityManager = $entityManager;
         $this->eventDispatcher = $eventDispatcher;
     }
@@ -78,7 +79,7 @@ abstract class AbstractManager
      */
     public function add($entity)
     {
-        if($entity instanceof LoggableInterface) {
+        if ($entity instanceof LoggableInterface) {
             $this->getEventDispatcher()->dispatch(
                 LogEvents::PRE_CREATE,
                 new LogEvent($entity)
@@ -88,7 +89,7 @@ abstract class AbstractManager
         $this->getEntityManager()->persist($entity);
         $this->getEntityManager()->flush();
 
-        if($entity instanceof LoggableInterface) {
+        if ($entity instanceof LoggableInterface) {
             $this->getEventDispatcher()->dispatch(
                 LogEvents::POST_CREATE,
                 new LogEvent($entity)
@@ -104,7 +105,7 @@ abstract class AbstractManager
      */
     public function update($entity)
     {
-        if($entity instanceof LoggableInterface) {
+        if ($entity instanceof LoggableInterface) {
             $this->getEventDispatcher()->dispatch(
                 LogEvents::PRE_UPDATE,
                 new LogEvent($entity)
@@ -114,7 +115,7 @@ abstract class AbstractManager
         $this->getEntityManager()->persist($entity);
         $this->getEntityManager()->flush();
 
-        if($entity instanceof LoggableInterface) {
+        if ($entity instanceof LoggableInterface) {
             $this->getEventDispatcher()->dispatch(
                 LogEvents::POST_UPDATE,
                 new LogEvent($entity)
@@ -130,7 +131,7 @@ abstract class AbstractManager
      */
     public function delete($entity)
     {
-        if($entity instanceof LoggableInterface) {
+        if ($entity instanceof LoggableInterface) {
             $this->getEventDispatcher()->dispatch(
                 LogEvents::PRE_DELETE,
                 new LogEvent($entity)
@@ -140,7 +141,7 @@ abstract class AbstractManager
         $this->getEntityManager()->remove($entity);
         $this->getEntityManager()->flush();
 
-        if($entity instanceof LoggableInterface) {
+        if ($entity instanceof LoggableInterface) {
             $this->getEventDispatcher()->dispatch(
                 LogEvents::POST_DELETE,
                 new LogEvent($entity)
@@ -153,5 +154,5 @@ abstract class AbstractManager
      *
      * @return string
      */
-    abstract function getEntityClass();
+    abstract public function getEntityClass();
 }

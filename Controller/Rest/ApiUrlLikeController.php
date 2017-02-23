@@ -1,12 +1,5 @@
 <?php
 
-/**
- *
- * @author:  Eddie BARRACO <eddie.barraco@idci-consulting.fr>
- * @license: GPL
- *
- */
-
 namespace Tms\Bundle\LikeBundle\Controller\Rest;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -27,6 +20,9 @@ use Tms\Bundle\LikeBundle\Form\UrlLikeType;
 
 /**
  * UrlLike API REST controller
+ *
+ * @author:  Eddie BARRACO <eddie.barraco@idci-consulting.fr>
+ * @license: GPL
  */
 class ApiUrlLikeController extends FOSRestController
 {
@@ -51,15 +47,14 @@ class ApiUrlLikeController extends FOSRestController
      * @param array   $sort
      */
     public function getUrllikesAction(
-        $url     = null,
+        $url = null,
         $user_id = null,
         $host = null,
-        $limit   = null,
-        $offset  = null,
-        $page    = null,
-        $sort    = null
-    )
-    {
+        $limit = null,
+        $offset = null,
+        $page = null,
+        $sort = null
+    ) {
         $view = $this->view(
             $this
                 ->get('tms_rest.formatter.factory')
@@ -88,8 +83,7 @@ class ApiUrlLikeController extends FOSRestController
                 ->setLimit($limit)
                 ->setOffset($offset)
                 ->setPage($page)
-                ->format()
-            ,
+                ->format(),
             Codes::HTTP_OK
         );
 
@@ -129,25 +123,25 @@ class ApiUrlLikeController extends FOSRestController
                             ->get('tms_like.manager.url_like')
                             ->getEntityClass()
                     )
-                    ->format()
-                ,
+                    ->format(),
                 Codes::HTTP_OK
             );
 
             $serializationContext = SerializationContext::create()
                 ->setGroups(array(
                     AbstractHypermediaFormatter::SERIALIZER_CONTEXT_GROUP_ITEM
-                ))
-            ;
+                ));
 
             $view->setSerializationContext($serializationContext);
 
             return $this->handleView($view);
-        } catch(NotFoundHttpException $e) {
-            return $this->handleView($this->view(
-                array(),
-                $e->getStatusCode()
-            ));
+        } catch (NotFoundHttpException $e) {
+            return $this->handleView(
+                $this->view(
+                    array(),
+                    $e->getStatusCode()
+                )
+            );
         }
     }
 
@@ -170,8 +164,7 @@ class ApiUrlLikeController extends FOSRestController
             try {
                 $this
                     ->get('tms_like.manager.url_like')
-                    ->add($urlLike)
-                ;
+                    ->add($urlLike);
 
                 $view = $this->view(
                     $this
@@ -185,11 +178,10 @@ class ApiUrlLikeController extends FOSRestController
                         ->setObjectManager(
                             $this->get('doctrine.orm.entity_manager'),
                             $this
-                            ->get('tms_like.manager.url_like')
-                            ->getEntityClass()
+                                ->get('tms_like.manager.url_like')
+                                ->getEntityClass()
                         )
-                        ->format()
-                    ,
+                        ->format(),
                     Codes::HTTP_CREATED
                 );
 
@@ -201,7 +193,6 @@ class ApiUrlLikeController extends FOSRestController
                 $view->setSerializationContext($serializationContext);
 
                 return $this->handleView($view);
-
             } catch (UniqueConstraintViolationException $e) {
                 $view = $this->view(
                     array('error' => $e->getMessage()),
@@ -241,18 +232,18 @@ class ApiUrlLikeController extends FOSRestController
      *
      * @param integer $id
      */
-     public function deleteUrllikeAction($id)
-     {
-         $entity = $this->get('tms_like.manager.url_like')->findOneById($id);
-         if (!$entity) {
-             $view = $this->view(array(), Codes::HTTP_NOT_FOUND);
+    public function deleteUrllikeAction($id)
+    {
+        $entity = $this->get('tms_like.manager.url_like')->findOneById($id);
+        if (!$entity) {
+            $view = $this->view(array(), Codes::HTTP_NOT_FOUND);
 
-             return $this->handleView($view);
-         }
+            return $this->handleView($view);
+        }
 
-         $this->get('tms_like.manager.url_like')->delete($entity);
-         $view = $this->view(array(), Codes::HTTP_NO_CONTENT);
+        $this->get('tms_like.manager.url_like')->delete($entity);
+        $view = $this->view(array(), Codes::HTTP_NO_CONTENT);
 
-         return $this->handleView($view);
-     }
+        return $this->handleView($view);
+    }
 }

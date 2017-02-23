@@ -17,7 +17,7 @@ class ApiUrlLikeControllerTest extends WebTestCase
     {
         $toPostSerializedUrlLike = array(
             'userId' => 'idci-dev',
-            'url'    => 'http://idci-consulting.fr/',
+            'url'    => 'http://idci-consulting.fr/'
         );
 
         $toPostSerializedUrlLikeWithError = array(
@@ -27,16 +27,28 @@ class ApiUrlLikeControllerTest extends WebTestCase
 
         $client = static::createClient();
 
-        $crawler = $client->request('POST', '/api/urllikes', $toPostSerializedUrlLike);
+        $crawler = $client->request(
+            'POST',
+            '/api/urllikes',
+            $toPostSerializedUrlLike
+        );
         $this->assertTrue($client->getResponse()->isSuccessful());
 
         $response = json_decode($client->getResponse()->getContent(), true);
         $createdUrlLikeId = $response['data']['id'];
 
-        $crawler = $client->request('POST', '/api/urllikes', $toPostSerializedUrlLike);
+        $crawler = $client->request(
+            'POST',
+            '/api/urllikes',
+            $toPostSerializedUrlLike
+        );
         $this->assertTrue($client->getResponse()->getStatusCode() === 409);
 
-        $crawler = $client->request('POST', '/api/urllikes', $toPostSerializedUrlLikeWithError);
+        $crawler = $client->request(
+            'POST',
+            '/api/urllikes',
+            $toPostSerializedUrlLikeWithError
+        );
         $this->assertTrue($client->getResponse()->getStatusCode() === 400);
 
         return $createdUrlLikeId;
@@ -52,7 +64,10 @@ class ApiUrlLikeControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/api/urllikes');
         $this->assertTrue($client->getResponse()->isSuccessful());
 
-        $crawler = $client->request('GET', '/api/urllikes?userId=idci-dev&userEmail=contact@idci-consulting.fr&userNickname=contact&url=http://idci-consulting.fr/&content=C\'est le meilleur site de l\'univer !');
+        $crawler = $client->request(
+            'GET',
+            '/api/urllikes?userId=idci-dev&userEmail=contact@idci-consulting.fr&userNickname=contact&url=http://idci-consulting.fr/&content=C\'est le meilleur site de l\'univer !'
+        );
         $response = json_decode($client->getResponse()->getContent(), true);
         $this->assertTrue($response['metadata']['totalCount'] !== 0);
 
@@ -66,7 +81,10 @@ class ApiUrlLikeControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', sprintf('/api/urllikes/%s', $postedUrlLikeId));
+        $crawler = $client->request(
+            'GET',
+            sprintf('/api/urllikes/%s', $postedUrlLikeId)
+        );
         $this->assertTrue($client->getResponse()->isSuccessful());
 
         $crawler = $client->request('GET', sprintf('/api/urllikes/%s', $postedUrlLikeId+1));
