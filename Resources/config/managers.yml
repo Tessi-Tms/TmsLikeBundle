@@ -3,4 +3,4 @@ services:
         class:     Tms\Bundle\LikeBundle\Manager\UrlLikeManager
         arguments: [@doctrine.orm.entity_manager, @event_dispatcher]
         tags:
-            - { name: rest.link, class: Tms\Bundle\LikeBundle\Entity\UrlLike }
+            - { name: rest.link, class: Tms\Bundle\LikeBundle\Model\UrlLike }

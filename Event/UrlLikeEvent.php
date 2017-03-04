@@ -7,7 +7,7 @@
 namespace Tms\Bundle\LikeBundle\Event;
 
 use Symfony\Component\EventDispatcher\Event;
-use Tms\Bundle\LikeBundle\Entity\UrlLike;
+use Tms\Bundle\LikeBundle\Model\UrlLike;
 
 /**
  * UrlLikeEvent

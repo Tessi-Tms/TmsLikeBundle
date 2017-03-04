@@ -1,4 +1,4 @@
-Tms\Bundle\LikeBundle\Entity\UrlLike:
+Tms\Bundle\LikeBundle\Model\UrlLike:
     exclusion_policy: ALL
 
     properties:

@@ -15,7 +15,7 @@ use FOS\RestBundle\Controller\Annotations\RequestParam;
 use FOS\RestBundle\Util\Codes;
 use JMS\Serializer\SerializationContext;
 use Tms\Bundle\RestBundle\Formatter\AbstractHypermediaFormatter;
-use Tms\Bundle\LikeBundle\Entity\UrlLike;
+use Tms\Bundle\LikeBundle\Model\UrlLike;
 use Tms\Bundle\LikeBundle\Form\UrlLikeType;
 
 /**

@@ -6,7 +6,7 @@
 
 namespace Tms\Bundle\LikeBundle\Manager;
 
-use Tms\Bundle\LikeBundle\Entity\UrlLike;
+use Tms\Bundle\LikeBundle\Model\UrlLike;
 use Tms\Bundle\LikeBundle\Event\UrlLikeEvent;
 use Tms\Bundle\LikeBundle\Event\UrlLikeEvents;
 

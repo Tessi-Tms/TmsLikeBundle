@@ -4,66 +4,36 @@
  * @author Eddie BARRACO <eddie.barraco@idci-consulting.fr>
  */
 
-namespace Tms\Bundle\LikeBundle\Entity;
-
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+namespace Tms\Bundle\LikeBundle\Model;
 
 /**
  * UrlLike
- *
- * @ORM\Table(
- *     name="url_like",
- *     indexes={
- *         @ORM\Index(name="user_id", columns={"user_id"}),
- *         @ORM\Index(name="url", columns={"url"}),
- *         @ORM\Index(name="host", columns={"host"}),
- *         @ORM\Index(name="created_at", columns={"created_at"})
- *     },
- *     uniqueConstraints={@ORM\UniqueConstraint(name="url_like_unique", columns={"url", "user_id"})}
- * )
- * @ORM\Entity(repositoryClass="Tms\Bundle\LikeBundle\Entity\Repository\UrlLikeRepository")
- * @ORM\HasLifecycleCallbacks()
  */
 class UrlLike
 {
 
     /**
      * @var integer
-     *
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
-     *
-     * @Assert\Url()
-     * @ORM\Column(type="string", name="url")
      */
     private $url;
 
     /**
      * @var string
-     *
-     * @ORM\Column(type="string", name="user_id")
      */
     private $userId;
 
     /**
      * @var string
-     *
-     * @ORM\Column(type="string", name="host")
      */
     private $host;
 
     /**
      * @var \datetime
-     *
-     * @ORM\Column(type="datetime", name="created_at")
      */
     private $createdAt;
 
@@ -75,19 +45,12 @@ class UrlLike
         return sprintf('%s %s', $this->getUserId(), $this->getUrl());
     }
 
-    /**
-     * @ORM\PrePersist()
-     */
     public function onCreate()
     {
         $now = new \DateTime("now");
         $this->setCreatedAt($now);
     }
 
-    /**
-     * @ORM\PrePersist()
-     * @ORM\PreUpdate()
-     */
     public function buildHost()
     {
         $host = parse_url($this->getUrl(), PHP_URL_HOST);

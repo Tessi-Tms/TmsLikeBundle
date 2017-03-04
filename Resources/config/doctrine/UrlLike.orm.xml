@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          http://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
+
+    <entity name="Tms\Bundle\LikeBundle\Model\UrlLike" table="url_like" repository-class="Tms\Bundle\LikeBundle\Repository\UrlLikeRepository">
+        <id name="id" type="integer" columns="id">
+            <generator strategy="AUTO" />
+        </id>
+        <field name="url" type="string" column="url" />
+        <field name="userId" type="string" column="user_id" />
+        <field name="host" type="string" column="host" />
+        <field name="createdAt" type="datetime" column="created_at" />
+
+        <indexes>
+            <index name="user_id" columns="user_id" />
+            <index name="url" columns="url" />
+            <index name="host" columns="host" />
+            <index name="created_at" columns="created_at" />
+        </indexes>
+
+        <lifecycle-callbacks>
+            <lifecycle-callback type="prePersist" method="onCreate"/>
+            <lifecycle-callback type="prePersist" method="buildHost"/>
+            <lifecycle-callback type="preUpdate" method="buildHost"/>
+        </lifecycle-callbacks>
+
+        <unique-constraints>
+            <unique-constraint columns="url,user_id" name="url_like_unique" />
+        </unique-constraints>
+    </entity>
+</doctrine-mapping>
