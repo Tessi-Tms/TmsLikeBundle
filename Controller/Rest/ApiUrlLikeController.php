@@ -53,15 +53,16 @@ class ApiUrlLikeController extends FOSRestController
         $limit = null,
         $offset = null,
         $page = null,
-        $sort = null
+        $sort = null,
+        Request $request
     ) {
         $view = $this->view(
             $this
                 ->get('tms_rest.formatter.factory')
                 ->create(
                     'orm_collection',
-                    $this->getRequest()->get('_route'),
-                    $this->getRequest()->getRequestFormat()
+                    $request->get('_route'),
+                    $request->getRequestFormat()
                 )
                 ->setObjectManager(
                     $this->get('doctrine.orm.entity_manager'),
@@ -105,7 +106,7 @@ class ApiUrlLikeController extends FOSRestController
      *
      * @param string  $id
      */
-    public function getUrllikeAction($id)
+    public function getUrllikeAction($id, Request $request)
     {
         try {
             $view = $this->view(
@@ -113,8 +114,8 @@ class ApiUrlLikeController extends FOSRestController
                     ->get('tms_rest.formatter.factory')
                     ->create(
                         'item',
-                        $this->getRequest()->get('_route'),
-                        $this->getRequest()->getRequestFormat(),
+                        $request->get('_route'),
+                        $request->getRequestFormat(),
                         array('id' => $id)
                     )
                     ->setObjectManager(
@@ -171,8 +172,8 @@ class ApiUrlLikeController extends FOSRestController
                         ->get('tms_rest.formatter.factory')
                         ->create(
                             'item',
-                            $this->getRequest()->get('_route'),
-                            $this->getRequest()->getRequestFormat(),
+                            $request->get('_route'),
+                            $request->getRequestFormat(),
                             array('id' => $urlLike->getId())
                         )
                         ->setObjectManager(
